@@ -22,9 +22,7 @@ project(fcc_lib)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-include(cmake/Findglog.cmake)
-
-find_package(glog REQUIRED)
+find_package(glog)
 
 # Configure FCC implementation
 if (NOT DEFINED DATA_SOURCE_IMPLEMENTATION)
@@ -62,7 +60,7 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 
 set(CMAKE_REQUIRED_LIBRARIES "curl")
 
-find_package(Boost REQUIRED COMPONENTS thread filesystem regex)
+find_package(Boost REQUIRED COMPONENTS filesystem regex)
 
 if (PERFETTO_TRACING)
   if (CMAKE_SYSTEM_PROCESSOR MATCHES "^x86_64")
@@ -128,6 +126,7 @@ target_link_libraries(fcc_lib
         ${IMPL_LIBS}
         ${Boost_LIBRARIES}
         buqu
+        pthread
         curl
         )
 

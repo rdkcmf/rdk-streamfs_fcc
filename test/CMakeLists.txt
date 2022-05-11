@@ -47,7 +47,7 @@ find_library(MENU_STATIC_LIB  libmenu.a)
         fccShell
         ${MENU_STATIC_LIB}
         ${CURSES_LIBRARY}
-        Threads::Threads
+        pthread
 )
 
 add_executable(
@@ -72,9 +72,8 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME ON)
 
 set(CMAKE_REQUIRED_LIBRARIES "curl")
-find_package(Threads REQUIRED)
 
-find_package(Boost REQUIRED COMPONENTS thread filesystem)
+find_package(Boost REQUIRED COMPONENTS filesystem)
 
 ADD_DEFINITIONS(-DMAX_BUFFERS)
 
