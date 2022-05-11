@@ -1,0 +1,266 @@
+What: /fcc/stream0.ts
+Date: Jun 2020
+Description:
+   Write:
+        * not supported
+   Read:
+        * current TS stream. In case of seek the read blocks until stream becomes available.
+
+What: /fcc/pmt0
+Date: Jun 2020
+Description:
+   Write:
+        * not supported
+   Read:
+        * current TS stream PAT information. Type: byte buffer. Can be empty.
+
+
+What: /fcc/pmt0
+Date: Jun 2020
+Description:
+   Write:
+        * not supported
+   Read:
+        * current TS stream PMT information. Type: byte buffer. Can be empty.
+
+
+What: /fcc/ecm0
+Date: Jun 2020
+Description:
+   Write:
+        * not supported
+   Read:
+        * current TS stream ECM. Empty only for non-encrypted stream.
+          Set asynchronously after channel switch (may be delayed)
+
+
+What: /fcc/chan_select0
+Date: Jun 2020
+Description: Select channel in IGMPv3 and IGMPv2 mode
+   IGMPv3 is enabled if sourceIp is specified in URI
+   Write:
+        * channel address (string)
+   Read:
+        * current channel address (string)
+   Example valid write values
+
+       IGMPv3 with source IP set:
+       234.80.160.204:5900/?sourceIp=2.3.4.5
+
+       IGMPv2 without source IP:
+       234.80.160.204:5900
+  
+What: fcc/stat_device_ip
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * IP address used with Nokia FCC library
+
+What: fcc/sw_version
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * Software version of the FCC plugin (derived from Git revision)
+
+What: fcc/model_id
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * Device model ID
+
+What: fcc/model_id
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * Device model ID
+
+What: fcc/stat_daily_offset
+Date: Jun 2020
+    Write:
+        * offset of daily report from midnight in hours. Integer in range [-14,12]
+    Read:
+        * Current offset value. Integer in range [-14,12]
+
+What: fcc/feipmgr_reset_statistics
+Date: Jun 2020
+    Write:
+        * Reset statistics. Integer in range [1]
+    Read:
+        * Not available
+
+What: fcc/stat_ondemand_statistics
+Date: Jun 2020
+    Write:
+        * Trigger ondemand statistics. Integer in range [1]
+    Read:
+        * Not available
+
+What: fcc/stat_periodic_stat_server
+Date: Jun 2020
+    Write:
+        * On periodic stats server IP and port. String in format "{ip}:{port}"
+    Read:
+        * Current server IP and port
+
+
+What: fcc/stat_ondemand_stat_server
+Date: Jun 2020
+    Write:
+        * On demand stats server IP and port. String in format "{ip}:{port}"
+    Read:
+        * Current server IP and port
+
+What: fcc/stat_inform_first_frame
+Date: Jun 2020
+    Write:
+        * Inform first frame decoded after channel switch. Integer in range [1]
+    Read:
+        * Not available
+
+
+What: fcc/stat_global
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * Global statistics. String. Format: JSON
+    Example output:
+        {
+          "channelChangeInfo" : {
+            "fccMaxTime" : 0,
+            "fccMeanTime" : 0,
+            "fccMinTime" : 0,
+            "numChannelChange" : 0,
+            "numFccFailInjectConfirm" : 0,
+            "numFccFailPktLoss" : 0,
+            "numFccFailServerTimeout" : 0,
+            "numFccFailUnicastTimeout" : 0,
+            "numFccInterrupt" : 0,
+            "numFccSuccess" : 0,
+            "numNoFcc" : 0
+          },
+          "dataTimeOuts" : {
+            "dataTimeOuts" : 0
+          },
+          "higherLossBursts" : {
+            "higherLossBursts" : 0,
+            "higherLossBurstsPktLoss" : 0
+          },
+          "lossBurstInfo" : [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+          "networkLatencyInfo" : {
+            "multicastJoinDelayAvg" : 0,
+            "multicastJoinDelayMax" : 0,
+            "multicastJoinDelayMin" : 0,
+            "roundTripTimeAvg" : 0,
+            "roundTripTimeMax" : 0,
+            "roundTripTimeMin" : 0
+          },
+          "packetLoss" : {
+            "arrivedLate" : 0,
+            "discontinuityFixByRetInM" : 0,
+            "lost" : 0,
+            "lostFixedByRet" : 0,
+            "recieved" : 0,
+            "streamDiscontinuityInM" : 0
+          },
+          "recoverableLossBursts" : {
+            "recoverableLossBursts" : 0,
+            "recoverableLossBurstsPktFixed" : 0,
+            "recoverableLossBurstsPktLoss" : 0
+          },
+          "resetStats" : 1,
+          "startTime" : 1593422488,
+          "veryHigherLossBursts" : {
+            "veryHigherLossBursts" : 0,
+            "veryHigherLossBurstsPktLoss" : 0
+          }
+
+
+
+What: fcc/stat_channel
+Date: Jun 2020
+    Write:
+        * Not available
+    Read:
+        * Channel statistics. String. Format TBD
+
+What: fcc/stat_periodic_freq
+Date: Jun 2020
+    Write:
+        * Set periodic update frequency
+        This API is used to set the interval for the periodic statistics reports. The
+        interval can vary from 1 hour to 1 week. If the period is set as zero, the
+        periodic reporting is disabled. In this case periodic report and midnight
+        report will not be sent.
+        Integer in range [0, 168]
+
+    Read:
+        * Periodic update frequency.  Integer in range [0, 168]
+
+What: fcc/flush0
+Date: November 2020
+    Write:
+        * Not available
+    Read:
+	    * Poll notifies on seek. Client can configure pipeline.
+        * Value same as fcc/seek0
+
+What: /fcc/seek0
+Date: November 2020
+Description:
+   Write:
+        * seek value in seconds, integer in range [0, seek_buffer_length_s]
+   Read:
+        * comma separated values:
+            <current_seek_seconds>,<seek_buffer_size_seconds>,<current_seek_bytes>,<current_bytes>,<max_seek_bytes>
+            Where:
+                * current_seek             - current seek in seconds
+                * seek_buffer_size_seconds - seek buffer size in seconds
+                * current_seek_bytes       - seek offset to live playback
+                * current_bytes            - current number of bytes in the TSB
+                * max_seek_bytes           - max seek value in bytes
+
+        Example:
+            current_seek == 0 indicates live stream.
+
+What: /fcc/chan_select_timestamp0
+Date: April 2021
+Description:
+   Write:
+        * not supported
+   Read:
+        * Monotonic timestamp of last channel select request.
+
+
+What: fcc/drm0
+Date: May 2021
+    Write:
+        * Not available
+    Read:
+        * Contains JSON string with PAT and PMT for all streams. Contains ECM for encrypted streams.
+        * Supports concurrent listen/ read from multiple clients like OCDM and player
+        * Is updated only once per channel switch.
+
+
+ What: fcc/stream_status
+ Date: Oct. 2021
+    Stream status. This value provides information about lost stream during a channel select.
+    The value does not track if a channel is selected or not, it provides only information about
+    data losses during a valid channel selected.
+
+    Write:
+       * Not available
+    Read:
+       * comma separated values
+        First value:
+          0 - No error detected. No channel may be selected, or the channel receiving data continuously
+          1 - Channel selected, but we are not receiving data from the Nokia library for some time.
+             This may be an indicator of various network issues
+
+        Second value:
+         <unsigned integer> - number of times we lost streaming and stopped receiving data during a valid
+                              channel selected.

@@ -1,0 +1,5 @@
+#pragma once
+
+#define PROJECT_MAJOR_VERSION 0
+#define PROJECT_MINOR_VERSION 1
+#define PROJECT_REVISION "@REVISION@"
