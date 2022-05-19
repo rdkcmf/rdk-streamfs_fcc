@@ -19,7 +19,7 @@
 
 
 #include <sys/socket.h>
-#include "RTPStreamListener.h"
+#include "UdpStreamListener.h"
 #include <glog/logging.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -31,13 +31,13 @@
 
 namespace multicast {
 
-RTPStreamListener::RTPStreamListener() : mFd(0), mExitRequested(false) {
+UdpStreamListener::UdpStreamListener() : mFd(0), mExitRequested(false) {
 
     mReaderThread = std::shared_ptr<std::thread>(
-            new std::thread(&RTPStreamListener::readLoop, this));
+            new std::thread(&UdpStreamListener::readLoop, this));
 }
 
-int RTPStreamListener::setup(const char *group, int port, MediaSourceHandler **pHandler) {
+int UdpStreamListener::setup(const char *group, int port, MediaSourceHandler **pHandler) {
     struct sockaddr_in addr {};
     mPHandler = pHandler;
 
@@ -97,7 +97,7 @@ exit:
     return 1;
 }
 
-int RTPStreamListener::readLoop() {
+int UdpStreamListener::readLoop() {
     int n;
     char buf[BUF_SIZE];
     socklen_t addrlen = sizeof(mAddr);
@@ -105,7 +105,7 @@ int RTPStreamListener::readLoop() {
 
     while (mFd == 0) {
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        LOG(INFO) << "Waiting for RTP open";
+        LOG(INFO) << "Waiting for UDP open";
     }
     bq_buffer *cBuf;
     while (!mExitRequested) {
@@ -125,14 +125,15 @@ int RTPStreamListener::readLoop() {
             // Do not exit on error.
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
-
+#ifdef DEBUG
         LOG(INFO) << "Got number of bytes " << n;
+#endif
     }
 
     return 0;
 }
 
-RTPStreamListener::~RTPStreamListener() {
+UdpStreamListener::~UdpStreamListener() {
 
     mExitRequested = true;
 

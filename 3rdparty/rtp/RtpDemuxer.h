@@ -20,7 +20,7 @@
 
 #pragma once
 #include "RtpCbHandler.h"
-#include "RTPStreamListener.h"
+#include "RtpStreamListener.h"
 
 namespace multicast {
 class RtpDemuxer : public Demuxer {
@@ -51,7 +51,7 @@ public:
 
 private:
     std::shared_ptr<RtpCbHandler> mCb;
-    RTPStreamListener mRtpSListener;
+    RtpStreamListener mRtpStreamListener;
 };
 
 }

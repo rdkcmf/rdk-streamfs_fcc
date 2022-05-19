@@ -17,33 +17,14 @@
  * limitations under the License.
  */
 
-#pragma once
 
-#include <memory>
-#include <thread>
-#include <atomic>
-#include <mutex>
-#include <netinet/in.h>
-#include <MediaSourceHandler.h>
+#include <config_fcc.h>
+#include "UdpCbHandler.h"
 
 namespace multicast {
-class RTPStreamListener {
-public:
-    RTPStreamListener();
 
-    ~RTPStreamListener();
+void UdpCbHandler::notifyStreamSwitched(const std::string &channelIp) {
+    UNUSED(channelIp);
+}
 
-    int setup(const char *group, int port, MediaSourceHandler **pHandler);
-
-private:
-
-    int readLoop();
-    std::atomic<int> mFd;
-    std::shared_ptr<std::thread> mReaderThread;
-    bool mExitRequested;
-    sockaddr_in mAddr {};
-    std::mutex mLock;
-    MediaSourceHandler **mPHandler;
-
-};
-}//namespace multicast
+} //namespace multicast

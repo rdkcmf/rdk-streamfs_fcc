@@ -18,7 +18,7 @@
  #
 
 set( PLUGIN_SOURCES
-        3rdparty/multicast/RtpCbHandler.cpp
-        3rdparty/multicast/RtpDemuxer.cpp
-        3rdparty/multicast/RTPStreamListener.cpp
+        3rdparty/udp/UdpCbHandler.cpp
+        3rdparty/udp/UdpDemuxer.cpp
+        3rdparty/udp/UdpStreamListener.cpp
         )

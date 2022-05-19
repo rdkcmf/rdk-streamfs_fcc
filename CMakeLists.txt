@@ -26,7 +26,7 @@ find_package(glog)
 
 # Configure FCC implementation
 if (NOT DEFINED DATA_SOURCE_IMPLEMENTATION)
-    set(DATA_SOURCE_IMPLEMENTATION "3rdparty/multicast")
+    set(DATA_SOURCE_IMPLEMENTATION "3rdparty/udp")
 endif(NOT DEFINED DATA_SOURCE_IMPLEMENTATION)
 
 message("Using FCC implementation: ${DATA_SOURCE_IMPLEMENTATION}.." )

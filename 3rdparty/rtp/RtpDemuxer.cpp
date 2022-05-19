@@ -61,7 +61,7 @@ int RtpDemuxer::open(const std::string &uri, const std::string &hwInterface) {
     UNUSED(hwInterface);
     ChannelConfig channelConfig(uri);
 
-    mRtpSListener.setup(channelConfig.destIPDotDecimal.c_str(), channelConfig.port, &mSrcHandler);
+    mRtpStreamListener.setup(channelConfig.destIPDotDecimal.c_str(), channelConfig.port, &mSrcHandler);
 
     return 0;
 }
