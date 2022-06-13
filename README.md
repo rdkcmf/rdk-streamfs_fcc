@@ -1,6 +1,6 @@
 ## Dependencies
 
-Build and install streamfs master from here: https://github.com/kuscsik/streamfs
+Build and install StreamFS master from here: https://code.rdkcentral.com/r/admin/repos/rdk/components/generic/streamfs
 
 **Boost regex:** sudo apt-get install -y libboost-regex-dev (or with system using boost 1.7 as default: sudo apt-get install -y libboost-regex1.67-dev)
 

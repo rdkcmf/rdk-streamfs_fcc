@@ -1,221 +1,23 @@
-What: /fcc/stream0.ts
-Date: Jun 2020
-Description:
-   Write:
-        * not supported
-   Read:
-        * current TS stream. In case of seek the read blocks until stream becomes available.
-
-What: /fcc/pmt0
-Date: Jun 2020
-Description:
-   Write:
-        * not supported
-   Read:
-        * current TS stream PAT information. Type: byte buffer. Can be empty.
-
-
-What: /fcc/pmt0
-Date: Jun 2020
-Description:
-   Write:
-        * not supported
-   Read:
-        * current TS stream PMT information. Type: byte buffer. Can be empty.
-
-
-What: /fcc/ecm0
-Date: Jun 2020
-Description:
-   Write:
-        * not supported
-   Read:
-        * current TS stream ECM. Empty only for non-encrypted stream.
-          Set asynchronously after channel switch (may be delayed)
-
-
 What: /fcc/chan_select0
-Date: Jun 2020
-Description: Select channel in IGMPv3 and IGMPv2 mode
-   IGMPv3 is enabled if sourceIp is specified in URI
+Description: Stream source channel URI (syntax depends upon the demuxer implementation used)
    Write:
-        * channel address (string)
+        * Channel address (string). Example: 239.0.0.1:5900
    Read:
-        * current channel address (string)
-   Example valid write values
+        * Current channel address (string). Example: 239.0.0.1:5900
 
-       IGMPv3 with source IP set:
-       234.80.160.204:5900/?sourceIp=2.3.4.5
-
-       IGMPv2 without source IP:
-       234.80.160.204:5900
-  
-What: fcc/stat_device_ip
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * IP address used with Nokia FCC library
-
-What: fcc/sw_version
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * Software version of the FCC plugin (derived from Git revision)
-
-What: fcc/model_id
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * Device model ID
-
-What: fcc/model_id
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * Device model ID
-
-What: fcc/stat_daily_offset
-Date: Jun 2020
-    Write:
-        * offset of daily report from midnight in hours. Integer in range [-14,12]
-    Read:
-        * Current offset value. Integer in range [-14,12]
-
-What: fcc/feipmgr_reset_statistics
-Date: Jun 2020
-    Write:
-        * Reset statistics. Integer in range [1]
-    Read:
-        * Not available
-
-What: fcc/stat_ondemand_statistics
-Date: Jun 2020
-    Write:
-        * Trigger ondemand statistics. Integer in range [1]
-    Read:
-        * Not available
-
-What: fcc/stat_periodic_stat_server
-Date: Jun 2020
-    Write:
-        * On periodic stats server IP and port. String in format "{ip}:{port}"
-    Read:
-        * Current server IP and port
-
-
-What: fcc/stat_ondemand_stat_server
-Date: Jun 2020
-    Write:
-        * On demand stats server IP and port. String in format "{ip}:{port}"
-    Read:
-        * Current server IP and port
-
-What: fcc/stat_inform_first_frame
-Date: Jun 2020
-    Write:
-        * Inform first frame decoded after channel switch. Integer in range [1]
-    Read:
-        * Not available
-
-
-What: fcc/stat_global
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * Global statistics. String. Format: JSON
-    Example output:
-        {
-          "channelChangeInfo" : {
-            "fccMaxTime" : 0,
-            "fccMeanTime" : 0,
-            "fccMinTime" : 0,
-            "numChannelChange" : 0,
-            "numFccFailInjectConfirm" : 0,
-            "numFccFailPktLoss" : 0,
-            "numFccFailServerTimeout" : 0,
-            "numFccFailUnicastTimeout" : 0,
-            "numFccInterrupt" : 0,
-            "numFccSuccess" : 0,
-            "numNoFcc" : 0
-          },
-          "dataTimeOuts" : {
-            "dataTimeOuts" : 0
-          },
-          "higherLossBursts" : {
-            "higherLossBursts" : 0,
-            "higherLossBurstsPktLoss" : 0
-          },
-          "lossBurstInfo" : [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-          "networkLatencyInfo" : {
-            "multicastJoinDelayAvg" : 0,
-            "multicastJoinDelayMax" : 0,
-            "multicastJoinDelayMin" : 0,
-            "roundTripTimeAvg" : 0,
-            "roundTripTimeMax" : 0,
-            "roundTripTimeMin" : 0
-          },
-          "packetLoss" : {
-            "arrivedLate" : 0,
-            "discontinuityFixByRetInM" : 0,
-            "lost" : 0,
-            "lostFixedByRet" : 0,
-            "recieved" : 0,
-            "streamDiscontinuityInM" : 0
-          },
-          "recoverableLossBursts" : {
-            "recoverableLossBursts" : 0,
-            "recoverableLossBurstsPktFixed" : 0,
-            "recoverableLossBurstsPktLoss" : 0
-          },
-          "resetStats" : 1,
-          "startTime" : 1593422488,
-          "veryHigherLossBursts" : {
-            "veryHigherLossBursts" : 0,
-            "veryHigherLossBurstsPktLoss" : 0
-          }
-
-
-
-What: fcc/stat_channel
-Date: Jun 2020
-    Write:
-        * Not available
-    Read:
-        * Channel statistics. String. Format TBD
-
-What: fcc/stat_periodic_freq
-Date: Jun 2020
-    Write:
-        * Set periodic update frequency
-        This API is used to set the interval for the periodic statistics reports. The
-        interval can vary from 1 hour to 1 week. If the period is set as zero, the
-        periodic reporting is disabled. In this case periodic report and midnight
-        report will not be sent.
-        Integer in range [0, 168]
-
-    Read:
-        * Periodic update frequency.  Integer in range [0, 168]
-
-What: fcc/flush0
-Date: November 2020
-    Write:
-        * Not available
-    Read:
-	    * Poll notifies on seek. Client can configure pipeline.
-        * Value same as fcc/seek0
+What: /fcc/stream0.ts
+Description:
+   Write:
+        * Not supported.
+   Read:
+        * TS stream read from TSB for the current source defined by the channel URI.
 
 What: /fcc/seek0
-Date: November 2020
 Description:
    Write:
-        * seek value in seconds, integer in range [0, seek_buffer_length_s]
+        * Seek value in seconds, integer in range [0, seek_buffer_length_s]
    Read:
-        * comma separated values:
+        * Comma separated values:
             <current_seek_seconds>,<seek_buffer_size_seconds>,<current_seek_bytes>,<current_bytes>,<max_seek_bytes>
             Where:
                 * current_seek             - current seek in seconds
@@ -227,33 +29,23 @@ Description:
         Example:
             current_seek == 0 indicates live stream.
 
-What: /fcc/chan_select_timestamp0
-Date: April 2021
+What: /fcc/trick_play0
 Description:
    Write:
-        * not supported
+        * Signed integer defining the trick play speed, where a negative value indicates fast reverse
+          and a positive value indicates fast forward. A value of 1 is normal playback.
+          Zero value is not allowed.
    Read:
-        * Monotonic timestamp of last channel select request.
+        * The current trick play speed.
 
-
-What: fcc/drm0
-Date: May 2021
-    Write:
-        * Not available
-    Read:
-        * Contains JSON string with PAT and PMT for all streams. Contains ECM for encrypted streams.
-        * Supports concurrent listen/ read from multiple clients like OCDM and player
-        * Is updated only once per channel switch.
-
-
- What: fcc/stream_status
+What: fcc/stream_status
  Date: Oct. 2021
     Stream status. This value provides information about lost stream during a channel select.
     The value does not track if a channel is selected or not, it provides only information about
     data losses during a valid channel selected.
 
     Write:
-       * Not available
+       * Not available.
     Read:
        * comma separated values
         First value:
@@ -264,3 +56,145 @@ Date: May 2021
         Second value:
          <unsigned integer> - number of times we lost streaming and stopped receiving data during a valid
                               channel selected.
+
+What: fcc/drm0
+    Write:
+        * Not available.
+    Read:
+        * Contains JSON string with PAT and PMT for all streams. Contains ECM for encrypted streams.
+        * Supports concurrent listen/ read from multiple clients like OCDM and player
+        * Is updated only once per channel switch.
+          Example:
+          {
+             "channel" : "239.0.0.1:5900",
+             "clear"   : false,
+             "ecm"     : "81B0695601DD0000564D454...",
+             "pat"     : "00B00D003BC50000047EE1E0A224424F",
+             "pmt"     : "02B043047EC70000E3E8F003650101..."
+          }
+
+What: /fcc/pat0
+Description: Deprecated, get the value from drm0 instead.
+   Write:
+        * Not supported.
+   Read:
+        * Current TS stream PAT information. Type: byte buffer. Can be empty.
+
+What: /fcc/pmt0
+Description: Deprecated, get the value from drm0 instead.
+   Write:
+        * Not supported.
+   Read:
+        * Current TS stream PMT information. Type: byte buffer. Can be empty.
+
+What: /fcc/ecm0
+Description: Deprecated, get the value from drm0 instead.
+   Write:
+        * Not supported.
+   Read:
+        * Current TS stream ECM. Empty only for non-encrypted stream.
+          Set asynchronously after channel switch (may be delayed).
+
+What: fcc/sw_version
+Description:
+    Write:
+        * Not available
+    Read:
+        * Software version of the FCC plugin (derived from Git revision)
+
+What: fcc/model_id
+    Write:
+        * Not available.
+    Read:
+        * Device model ID.
+
+What: fcc/flush0
+    Write:
+        * Not available
+    Read:
+	    * Poll notifies on seek. Client can configure pipeline.
+        * Value same as fcc/seek0
+
+What: fcc/player_state0
+    Write:
+        * The player state, to be set by the player, when changed. Possible string values are UNDEF, READY, PLAYING, PAUSED.
+    Read:
+	    * The current player state.
+
+What: fcc/cdm_ready0
+Description: CDM ready signalling node. Deprecated. Previously used for blocking the player from reading transport stream data via stream0.ts until the CDM notifies that it’s ready. See also img/streamfs_cdm_block.png.
+    Write:
+        * Unsigned integer defining if the CDM is ready (1) or not (0)
+    Read:
+	    * FUSE poll handler notifies the StreamFS FCC plugin when the value is changed
+
+What: /fcc/chan_select_timestamp0
+Description:
+   Write:
+        * Not supported.
+   Read:
+        * Monotonic timestamp of last channel select request.
+
+What: fcc/stat_device_ip
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_daily_offset
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/feipmgr_reset_statistics
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_ondemand_statistics
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_periodic_stat_server
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_inform_first_frame
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_global
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_channel
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
+What: fcc/stat_periodic_freq
+Description: Only applicable for Nokia VBO demuxer implementation (restricted component).
+    Write:
+        * Not applicable.
+    Read:
+        * Not applicable.
+
