@@ -118,6 +118,7 @@ int UdpStreamListener::readLoop() {
                 memcpy(cBuf->buffer, buf, BUF_SIZE);
                 cBuf->size = n;
                 (*mPHandler)->pushBuffertoBQ(cBuf, 0);
+                (*mPHandler)->reportTSBufferQueued();
             }
         }
 
