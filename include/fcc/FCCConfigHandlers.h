@@ -32,9 +32,9 @@
 #include <confighandler/CdmStatusHandler.h>
 #include <fcc/FCCConfigHandlers.h>
 #include "config_options.h"
-#include "confighandler/ConfigHandler.h"
-#include "ChannelSelector.h"
 #include "Demuxer.h"
+#include "confighandler/ConfigHandler.h"
+#include "confighandler/ChannelSelector.h"
 #include "confighandler/PlayerStateRequestHandler.h"
 #include "confighandler/SeekRequestHandler.h"
 #include "confighandler/StatsRequestHandler.h"

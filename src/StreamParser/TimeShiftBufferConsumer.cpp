@@ -321,7 +321,7 @@ void TimeShiftBufferConsumer::onOpen(const char *channelId) {
 #ifdef TS_PACKAGE_DUMP
     if (mTsDumpEnable != nullptr) {
         if (*mTsDumpEnable) {
-            mSocketServer.start(PLAYER_TS_DUMP_SOCKET_PORT);
+            mSocketServer.start(PLAYER_READ_TS_DUMP_SOCKET_PORT);
         } else {
             mSocketServer.stop();
         }

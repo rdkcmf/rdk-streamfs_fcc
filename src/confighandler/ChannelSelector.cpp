@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#include "ChannelSelector.h"
+#include "confighandler/ChannelSelector.h"
 #include "MediaSourceHandler.h"
 #include "config_options.h"
 

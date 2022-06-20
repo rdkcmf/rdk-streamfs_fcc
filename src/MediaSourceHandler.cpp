@@ -162,7 +162,7 @@ int MediaSourceHandler::open(std::string uri, uint32_t demuxer, uint32_t timeout
 #ifdef TS_PACKAGE_DUMP
     if (mTsDumpEnable != nullptr) {
         if (*mTsDumpEnable) {
-            mSocketServer.start(NOKIA_TS_DUMP_SOCKET_PORT);
+            mSocketServer.start(DEMUX_OUTPUT_TS_DUMP_SOCKET_PORT);
         } else {
             mSocketServer.stop();
         }

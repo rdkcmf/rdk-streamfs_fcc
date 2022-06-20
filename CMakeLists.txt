@@ -37,8 +37,8 @@ option(TS_PACKAGE_DUMP "Enable web player and Nokia library ts-dump over TCP str
 
 if (TS_PACKAGE_DUMP)
     add_definitions(-DTS_PACKAGE_DUMP)
-    add_definitions(-DNOKIA_TS_DUMP_SOCKET_PORT=9994)
-    add_definitions(-DPLAYER_TS_DUMP_SOCKET_PORT=9995)
+    add_definitions(-DDEMUX_OUTPUT_TS_DUMP_SOCKET_PORT=9994)
+    add_definitions(-DPLAYER_READ_TS_DUMP_SOCKET_PORT=9995)
 endif()
 
 option(PERFETTO_TRACING "Enable Perfetto tracer" OFF)

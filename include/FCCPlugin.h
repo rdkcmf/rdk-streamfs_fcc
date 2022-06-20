@@ -31,10 +31,10 @@
 #include <streamfs/PluginCallbackInterface.h>
 #include <confighandler/CdmStatusHandler.h>
 #include <fcc/FCCConfigHandlers.h>
-#include "confighandler/ConfigHandler.h"
-#include "ChannelSelector.h"
-#include "confighandler/SeekRequestHandler.h"
 #include "Demuxer.h"
+#include "confighandler/ConfigHandler.h"
+#include "confighandler/ChannelSelector.h"
+#include "confighandler/SeekRequestHandler.h"
 #include "confighandler/StatsRequestHandler.h"
 #include "confighandler/StreamInfoRequestHandler.h"
 #include "confighandler/ProtectionInfoRequestHandler.h"
