@@ -24,9 +24,6 @@ PERFETTO_TRACK_EVENT_STATIC_STORAGE();
 
 void InitializePerfetto() {
     perfetto::TracingInitArgs args;
-    // The backends determine where trace events are recorded. For this example we
-    // are going to use the system-wide tracing service, so that we can see our
-    // app's events in context with system profiling information.
     args.backends = perfetto::kSystemBackend;
 
     perfetto::Tracing::Initialize(args);
